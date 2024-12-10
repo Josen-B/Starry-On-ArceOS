@@ -19,6 +19,7 @@ syscalls = { version = "0.6", default-features = false }
 
 axstd = { git = "https://github.com/arceos-org/arceos.git", features = ["paging"] }
 axhal = { git = "https://github.com/arceos-org/arceos.git", features = ["uspace"] }
+axfs = { path = "./.arceos/modules/axfs" }
 axmm = { git = "https://github.com/arceos-org/arceos.git" }
 axtask = { git = "https://github.com/arceos-org/arceos.git" }
 axsync = { git = "https://github.com/arceos-org/arceos.git" }

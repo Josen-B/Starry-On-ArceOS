@@ -3,7 +3,7 @@
 //! It will read and parse ELF files.
 //!
 //! Now these apps are loaded into memory as a part of the kernel image.
-use alloc::{collections::btree_map::BTreeMap, vec::Vec};
+use alloc::{collections::btree_map::BTreeMap, vec::Vec, boxed::Box};
 use core::arch::global_asm;
 
 use axhal::paging::MappingFlags;
@@ -102,12 +102,10 @@ pub(crate) fn load_elf(name: &str, base_addr: VirtAddr) -> ELFInfo {
     use xmas_elf::program::{Flags, SegmentData};
     use xmas_elf::{header, ElfFile};
 
-    let elf = ElfFile::new(
-        get_app_data_by_name(name).unwrap_or_else(|| panic!("failed to get app: {}", name)),
-    )
-    .expect("invalid ELF file");
+    let elf_data =  Box::leak(axfs::api::read(name)
+    .expect("App not found").into_boxed_slice());
+    let elf = ElfFile::new(elf_data).expect("Error parsing app ELF file.");
     let elf_header = elf.header;
-
     assert_eq!(elf_header.pt1.magic, *b"\x7fELF", "invalid elf!");
 
     let expect_arch = if cfg!(target_arch = "x86_64") {
