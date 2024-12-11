@@ -47,12 +47,15 @@ dependencies = [
 name = "arceos_posix_api"
 version = "0.1.0"
 dependencies = [
+ "axalloc",
  "axconfig",
  "axerrno",
  "axfeat",
+ "axfs",
  "axhal",
  "axio",
  "axlog",
+ "axns",
  "axruntime",
  "axsync",
  "bindgen",
@@ -111,10 +114,12 @@ dependencies = [
 name = "axdriver"
 version = "0.1.0"
 dependencies = [
+ "axalloc",
  "axconfig",
  "axdriver_base",
  "axdriver_block",
  "axdriver_pci",
+ "axdriver_virtio",
  "axhal",
  "cfg-if",
  "log",
@@ -143,6 +148,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "axdriver_virtio"
+version = "0.1.0"
+source = "git+https://github.com/arceos-org/axdriver_crates.git?tag=v0.1.0#78686a7e70c9203ba29e425929c393fbb7eca208"
+dependencies = [
+ "axdriver_base",
+ "axdriver_block",
+ "virtio-drivers",
+]
+
+[[package]]
 name = "axerrno"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -156,6 +171,8 @@ name = "axfeat"
 version = "0.1.0"
 dependencies = [
  "axalloc",
+ "axdriver",
+ "axfs",
  "axhal",
  "axlog",
  "axruntime",
@@ -296,6 +313,8 @@ version = "0.1.0"
 dependencies = [
  "axalloc",
  "axconfig",
+ "axdriver",
+ "axfs",
  "axhal",
  "axlog",
  "axmm",
