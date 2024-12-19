@@ -55,15 +55,15 @@ pub(crate) fn get_app_data_by_name(name: &str) -> Option<&'static [u8]> {
         .map(get_app_data)
 }
 
-/// List all apps.
-pub(crate) fn list_apps() {
-    info!("/**** APPS ****");
-    let app_count = get_app_count();
-    for i in 0..app_count {
-        info!("{}", get_app_name(i));
-    }
-    info!("**************/");
-}
+// /// List all apps.
+// pub(crate) fn list_apps() {
+//     info!("/**** APPS ****");
+//     let app_count = get_app_count();
+//     for i in 0..app_count {
+//         info!("{}", get_app_name(i));
+//     }
+//     info!("**************/");
+// }
 
 /// The segment of the elf file, which is used to map the elf file to the memory space
 pub struct ELFSegment {

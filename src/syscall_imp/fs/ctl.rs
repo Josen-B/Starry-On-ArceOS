@@ -18,5 +18,5 @@ pub(crate) fn sys_ioctl(_fd: i32, _op: usize, _argp: *mut c_void) -> i32 {
 }
 
 pub(crate) fn sys_mkdirat(_dirfd: i32, _pathname: *const u8, _mode: u32) -> i32 {
-    syscall_body!(sys_ioctl, { Ok(0) })
+    syscall_body!(sys_ioctl, Ok(0))
 }
